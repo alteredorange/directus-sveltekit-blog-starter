@@ -1,5 +1,6 @@
 import preprocess from 'svelte-preprocess'
 import adapter from '@sveltejs/adapter-static'
+import adapter from '@sveltejs/adapter-node'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -9,10 +10,11 @@ const config = {
 
   kit: {
     adapter: adapter({
+      out: 'public'
       // default options are shown
-      pages: 'public',
+      //   pages: 'public',
       //   assets: 'build',
-      fallback: null
+      //   fallback: null
     }),
     // hydrate the <div id="svelte"> element in src/app.html
     target: '#svelte'
