@@ -1,0 +1,21 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ELIFECYCLE",
+    "errno": "ENOENT",
+    "syscall": "spawn",
+    "file": "sh",
+    "pkgid": "~TODO~@0.0.1",
+    "stage": "dev",
+    "script": "svelte-kit dev",
+    "pkgname": "~TODO~",
+    "err": {
+      "name": "Error",
+      "message": "~TODO~@0.0.1 dev: `svelte-kit dev`\nspawn ENOENT",
+      "code": "ELIFECYCLE",
+      "stack": "Error: ~TODO~@0.0.1 dev: `svelte-kit dev`\nspawn ENOENT\n    at ChildProcess.<anonymous> (/home/oranges/.nvm/versions/node/v16.2.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.9.1/node_modules/pnpm/dist/pnpm.cjs:92409:22)\n    at ChildProcess.emit (node:events:365:28)\n    at maybeClose (node:internal/child_process:1067:16)\n    at Process.ChildProcess._handle.onexit (node:internal/child_process:301:5)"
+    }
+  }
+}
