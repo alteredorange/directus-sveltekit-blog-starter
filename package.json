@@ -1,9 +1,10 @@
 {
-  "name": "~TODO~",
+  "name": "directus-svelte-starter",
   "version": "0.0.1",
   "scripts": {
     "dev": "concurrently --names \"directus, svelte\" --prefix \"{name}:\" --prefix-colors \"blue,red\" --kill-others \"pnpm run directus start\"  \"svelte-kit dev\" ",
     "build": "concurrently --names \"directus, svelte\" --prefix \"{name}:\" --prefix-colors \"blue,red\" --kill-others \"pnpm run directus start\"  \"svelte-kit build\"",
+    "directus": "directus start",
     "preview": "svelte-kit preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
@@ -19,7 +20,8 @@
     "svelte-check": "^2.0.0",
     "svelte-preprocess": "^4.0.0",
     "tslib": "^2.0.0",
-    "typescript": "^4.0.0"
+    "typescript": "^4.0.0",
+    "vite-plugin-windicss": "^1.1.1"
   },
   "type": "module",
   "dependencies": {

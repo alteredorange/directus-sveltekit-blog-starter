@@ -42,6 +42,62 @@
   $: runningHeight = runningWidth / 1.25
 </script>
 
+<style>
+  /* .svg {
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    left: 0%;
+    top: 0%;
+    display: block;
+    background: transparent;
+  } */
+  .logo {
+    /* position: absolute; */
+    /* top: 60px;
+    left: 36px; */
+    /* width: 320px; */
+    /* height: 256px; */
+    margin: 0 auto;
+    background-image: url("./directus-running-logo.svg");
+    /* background-color: red; */
+    background-position: 0% 0%;
+    /* background-size: 4800px 256px; */
+  }
+  .running {
+    animation: 1200ms run steps(14) infinite;
+  }
+  @keyframes run {
+    100% {
+      background-position: 100%;
+    }
+  }
+  .seperator {
+    animation: 32000ms spin steps(8) infinite;
+  }
+  @keyframes spin {
+    from {
+      /* transform: rotateX(0) rotateY(0); */
+      transform: rotate(0deg);
+      /* to keep things centered */
+      /* margin: 0 auto; */
+    }
+    to {
+      /* transform: rotateX(180) rotateY(365); */
+      transform: rotate(365deg);
+      /* to keep things centered */
+      /* margin: 0 auto; */
+    }
+  }
+  canvas {
+    width: 85%;
+    height: 85%;
+    background-color: rgb(255, 255, 255);
+    -webkit-mask: url(svelte-logo-mask.svg) 50% 50% no-repeat;
+    mask: url(svelte-logo-mask.svg) 50% 50% no-repeat;
+  }
+</style>
+
 <svelte:head>
   <title>Home</title>
 </svelte:head>
