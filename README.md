@@ -13,7 +13,8 @@ This is a Directus, Sveltekit blogging starter. Also comes with Tailwind (via Wi
 3. `pnpm i`  //or 'npm i' or 'yarn'
 4. `pnpm run dev` - This will start Directus on the standard port (http://localhost:8055) and Sveltekit on http://localhost:3000
 5. Visit the Directus dashboard to add posts
-6. Edit any styles or pages directly through the Sveltekit files
+6. Directus admin credentials: `admin@example.com` & `notsecureatall`
+7. Edit any styles or pages directly through the Sveltekit files
 
 
 ## Improvements and Suggestions
