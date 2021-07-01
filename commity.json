@@ -1,0 +1,54 @@
+{
+  "fields": [
+    {
+      "scope": {
+        "label": "Select the type of change that you're committing",
+        "type": "select",
+        "selectOptions": [
+          {
+            "value": "feat",
+            "description": "A new feature"
+          },
+          {
+            "value": "fix",
+            "description": "A bug fix"
+          },
+          {
+            "value": "docs",
+            "description": "Documentation only changes"
+          },
+          {
+            "value": "refactor",
+            "description": "Changes that neither fixes a bug or adds a feature"
+          },
+          {
+            "value": "spec",
+            "description": "Changes that affect unit tests"
+          },
+          {
+            "value": "pkg",
+            "description": "Changes that affect package (deps, config, readme...)"
+          }
+        ]
+      }
+    },
+    {
+      "message": {
+        "label": "Choose the commit message",
+        "decorations": {
+          "prefix": ": "
+        }
+      }
+    },
+    {
+      "ticket": {
+        "label": "What is the issue id",
+        "decorations": {
+          "prefix": " #"
+        },
+        "required": false
+      }
+    }
+  ],
+  "render": "{{scope}}{{ticket}}{{message}}"
+}

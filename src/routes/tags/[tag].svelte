@@ -1,14 +1,15 @@
 <script context="module" lang="ts">
   export const prerender = true
+  import { variables } from "$lib/variables"
 
-  export async function load({ fetch }, retries = 1) {
-    //published posts with limit and sort by most recent
-    // `${variables.apiUrl}/items/posts?filter[status][_eq]=published&limit=1&sort=-id`
+  export async function load({ page, fetch }) {
+    const tag = page.params.tag
     function timeout(ms) {
       return new Promise((resolve) => setTimeout(resolve, ms))
     }
-    const getPosts = async (url, retries = 1) => {
-      const posts = await fetch(url)
+
+    const getPost = async (url, retries = 1) => {
+      const post = await fetch(url)
         .then(async (res) => {
           if (res.ok) return res.json()
           if (retries < 4) {
@@ -16,11 +17,11 @@
               `Problem with res, retrying in 4 seconds. This is attempt #${retries}`
             )
             await timeout(4000)
-            return getPosts(url, retries + 1)
+            return getPost(url, retries + 1)
           }
           console.log(res.status)
         })
-        .then((posts) => posts.data)
+        .then((post) => post.data)
         .catch(async (error) => {
           console.error(error.code)
           if (retries < 4) {
@@ -28,85 +29,32 @@
               `Directus Not Open Yet, Retrying in 4 seconds. This is attempt #${retries}`
             )
             await timeout(4000)
-            return getPosts(url, retries + 1)
+            return getPost(url, retries + 1)
           }
         })
 
-      return posts
+      return post
     }
+    //   http://localhost:8055/items/posts?search=finance
+    //
+    // http://localhost:8055/items/posts?filter%5Btags%5D%5B_contains%5D=gaming&filter%5Bstatus%5D%5B_eq%5D=published
 
-    // const posts = await fetch(
-    //   `${variables.apiUrl}/items/posts?filter[status][_eq]=published&sort=-id&page=1`
-    // )
-    //   .then((res) => {
-    //     if (res.ok) return res.json()
-    //     if (retries > 0) {
-    //       console.log("Directus Connection Not Open Yet, Retrying...")
-    //       return setTimeout(
-    //         fetch(
-    //           `${variables.apiUrl}/items/posts?filter[status][_eq]=published&sort=-id&page=1`
-    //         ),
-    //         2000
-    //       )
-    //     }
-    //   })
-    //   .then((posts) => posts.data)
-
-    const posts = await getPosts(
-      `${variables.apiUrl}/items/posts?filter[status][_eq]=published&sort=-published_date&page=1`
+    const posts = await getPost(
+      `${variables.apiUrl}/items/posts?filter[status][_eq]=published&filter[tags][_contains]=${page.params.tag}`
     )
 
     return {
       props: {
-        posts
+        posts,
+        tag
       }
     }
   }
 </script>
 
-<script>
-  import { variables } from "$lib/variables"
-
+<script lang="ts">
   export let posts
-  // `${variables.apiUrl}/items/posts?filter[status][_eq]=published&sort=-id&page=1`
-
-  // https://stackoverflow.com/a/33292942/2936521
-  function timeout(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms))
-  }
-
-  const getPosts = async (url, retries = 1) => {
-    const posts = await fetch(url)
-      .then(async (res) => {
-        if (res.ok) return res.json()
-        if (retries < 4) {
-          console.log(
-            `Problem with res, retrying in 4 seconds. This is attempt #${retries}`
-          )
-          await timeout(4000)
-          return getPosts(url, retries + 1)
-        }
-        console.log(res.status)
-      })
-      .then((posts) => posts.data)
-      .catch(async (error) => {
-        console.error(error.code)
-        if (retries < 4) {
-          console.log(
-            `Directus Not Open Yet, Retrying in 4 seconds. This is attempt #${retries}`
-          )
-          await timeout(4000)
-          return getPosts(url, retries + 1)
-        }
-      })
-
-    return posts
-  }
-
-  $: if (!posts)
-    posts = getPosts(
-      `${variables.apiUrl}/items/posts?filter[status][_eq]=published&sort=-published_date&page=1`
-    )
+  export let tag
 
   $: if (posts) {
     for (let i in posts) {
@@ -120,7 +68,7 @@
 
 <div
   class="font-bold mx-auto border-orange-400 border-b-1 mt-7 text-center pb-2 text-4xl text-orange-400 w-11/12 sm:w-8/12">
-  Recent Posts
+  {tag} Posts
 </div>
 
 <div class="mt-10 posts">
@@ -168,15 +116,3 @@
     No posts yet!
   {/each}
 </div>
-
-<!-- {#await posts}
-  Loading Posts...
-{:then posts}
-  {#each posts as post}
-    <a href="/blog/{post?.slug}">{post?.title}</a>
-  {/each}
-{:catch error}
-  Posts could not be loaded.
-  <br />
-  Error: {error}
-{/await} -->

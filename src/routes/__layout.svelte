@@ -15,6 +15,7 @@
     max-width: 1024px;
     margin: 0 auto;
     box-sizing: border-box;
+    min-height: calc(100vh - 135px);
   }
 
   footer {
@@ -23,6 +24,7 @@
     justify-content: center;
     align-items: center;
     padding: 40px;
+    height: 50px;
   }
 
   footer a {
@@ -37,12 +39,15 @@
 </style>
 
 <Header />
-<main>
+<main class="min-h-[calc(100%-70px)] min-h-[calc(100%+1rem)]">
   <slot />
 </main>
 
 <footer>
   <p>
-    visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit
+    Docs: <a
+      target="blank"
+      href="https://docs.directus.io/getting-started/introduction/">Directus</a>
+    & <a target="blank" href="https://kit.svelte.dev/docs">Sveltekit</a>
   </p>
 </footer>

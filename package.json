@@ -3,17 +3,19 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "concurrently --names \"directus, svelte\" --prefix \"{name}:\" --prefix-colors \"blue,red\" --kill-others \"pnpm run directus start\"  \"svelte-kit dev\" ",
-    "build": "svelte-kit build",
+    "build": "concurrently --names \"directus, svelte\" --prefix \"{name}:\" --prefix-colors \"blue,red\" --kill-others \"pnpm run directus start\"  \"svelte-kit build\"",
     "preview": "svelte-kit preview",
     "directus": "directus start",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
+    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+    "git": "commity -a -p"
   },
   "devDependencies": {
     "@sveltejs/adapter-node": "^1.0.0-next.24",
     "@sveltejs/adapter-static": "^1.0.0-next.13",
     "@sveltejs/kit": "next",
     "@types/cookie": "^0.4.0",
+    "flexsearch": "^0.7.2",
     "svelte": "^3.34.0",
     "svelte-check": "^2.0.0",
     "svelte-preprocess": "^4.0.0",
@@ -25,6 +27,7 @@
   "dependencies": {
     "@fontsource/fira-mono": "^4.2.2",
     "@lukeed/uuid": "^2.0.0",
+    "@pierred/commity": "^1.7.0",
     "concurrently": "^6.2.0",
     "cookie": "^0.4.1",
     "directus": "^9.0.0-rc.82"

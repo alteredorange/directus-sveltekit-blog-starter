@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { goto } from "$app/navigation"
+
   import { page } from "$app/stores"
 </script>
 
@@ -33,7 +35,7 @@
 <header>
   <div
     class="flex font-bold font-xl text-center pt-3 text-blue-400 menu items-center justify-between">
-    <div class="left">
+    <div class="cursor-pointer left" on:click={() => goto("/")}>
       <div class="flex ml-10 logo items-center">
         <img src="/svelte-logo.svg" alt="" class="h-10" />
         <div class="font-bold ml-3 text-2xl text-gray-600">Cool Blog</div>
@@ -52,7 +54,7 @@
         class:active={$page.path === "/blog"}
         aria-current={$page.path === "/blog" ? "page" : undefined}
         href="/blog">Blog</a>
-      <a href="http://localhost:8055">Directus Admin</a>
+      <a href="http://localhost:8055" target="blank">Directus Admin</a>
     </div>
   </div>
 </header>

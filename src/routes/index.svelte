@@ -1,37 +1,12 @@
 <script context="module" lang="ts">
   export const prerender = true
-
-  // import { variables } from "$lib/variables"
-
-  // export async function load({ fetch }) {
-  //   // Use a `limit` querystring parameter to fetch a limited number of posts
-  //   // e.g. fetch('posts.json?limit=5') for 5 most recent posts
-  //   //     const posts = await fetch("/posts.json").then((res) => res.json())
-  //   const posts = await fetch(
-  //     `${variables.apiUrl}/items/posts?filter[status][_eq]=published`
-  //   )
-  //     .then((res) => res.json())
-  //     .then((posts) => posts.data)
-  //   return {
-  //     props: {
-  //       posts
-  //     }
-  //   }
-  // }
 </script>
 
 <script lang="ts">
   import { onMount } from "svelte"
-  // import Counter from "$lib/Counter/index.svelte"
-  // export let posts
-
-  const spaces =
-    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-
   let canvas
 
   onMount(() => {
-    console.log("mounted")
     const ctx = canvas.getContext("2d")
     let frame
     ;(function loop() {
@@ -134,48 +109,50 @@
   <title>Directus SvelteKit Blog</title>
 </svelte:head>
 
-<section class="mt-7">
-  <h1 class="font-bold text-center text-5xl text-gray-600">
-    Directus SvelteKit Blog Starter
-  </h1>
-  <section>
-    <div class="mx-auto bg-orange-300 h-11px mt-5 text-center w-5/12" />
+<div class="h-full my-auto items-center">
+  <section class="mt-7 sm:-mt-7">
+    <h1 class="font-bold text-center text-5xl text-gray-600">
+      Directus SvelteKit Blog Starter
+    </h1>
+    <section>
+      <div class="mx-auto bg-orange-300 h-11px mt-5 text-center w-5/12" />
+    </section>
   </section>
-</section>
-<section>
-  <div
-    class="flex flex-wrap mx-auto mt-11 w-8/12 justify-between sm:flex-nowrap md:w-7/12">
+  <section>
     <div
-      class="flex-wrap my-auto mx-auto w-8/12 sm:w-5/12"
-      bind:offsetWidth={runningWidth}>
+      class="flex flex-wrap mx-auto mt-11 w-8/12 justify-between sm:flex-nowrap md:w-7/12">
       <div
-        class="logo running"
-        style="background-size: {runningHeight *
-          18.75}px {runningHeight}px; width: {runningWidth}px; height: {runningHeight}px; " />
+        class="flex-wrap my-auto mx-auto w-8/12 sm:w-5/12"
+        bind:offsetWidth={runningWidth}>
+        <div
+          class="logo running"
+          style="background-size: {runningHeight *
+            18.75}px {runningHeight}px; width: {runningWidth}px; height: {runningHeight}px; " />
+      </div>
+      <div
+        class="my-auto mx-auto text-center py-4 text-8xl text-orange-300 w-11/12 sm:my-none sm:w-2/12">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="my-auto mx-auto max-h-100px w-10/12 seperator sm:max-h-none"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </div>
+      <div
+        class="flex-wrap my-auto mx-auto max-h-200px w-11/12 sm:max-h-none sm:w-5/12">
+        <canvas
+          bind:this={canvas}
+          width={32}
+          height={32}
+          class="mx-auto max-h-200px sm:max-h-none" />
+        <!-- <img src="/svelte-logo.svg" class="mx-auto h-200px" alt="" /> -->
+      </div>
     </div>
-    <div
-      class="my-auto mx-auto text-center py-4 text-8xl text-orange-300 w-11/12 sm:my-none sm:w-2/12">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="my-auto mx-auto max-h-100px w-10/12 seperator sm:max-h-none"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor">
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </div>
-    <div
-      class="flex-wrap my-auto mx-auto max-h-200px w-11/12 sm:max-h-none sm:w-5/12">
-      <canvas
-        bind:this={canvas}
-        width={32}
-        height={32}
-        class="mx-auto max-h-200px sm:max-h-none" />
-      <!-- <img src="/svelte-logo.svg" class="mx-auto h-200px" alt="" /> -->
-    </div>
-  </div>
-</section>
+  </section>
+</div>
