@@ -11,14 +11,13 @@ const config = {
 
   kit: {
     adapter: adapter({
-      // out: 'public'
-      // default options are shown
-      pages: 'public',
-      assets: 'build',
-      fallback: null
+      // pages: 'build',
+      // assets: 'build',
+      // fallback: null
     }),
     // hydrate the <div id="svelte"> element in src/app.html
     target: '#svelte',
+    // hydrate: false,
     vite: {
       plugins: [WindiCSS.default()]
     }

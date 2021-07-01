@@ -52,22 +52,36 @@
     //   })
     //   .then((posts) => posts.data)
 
-    const posts = await getPosts(
-      `${variables.apiUrl}/items/posts?filter[status][_eq]=published&sort=-published_date&page=1`
-    )
+    const url = `${variables.apiUrl}/items/posts?filter[status][_eq]=published&sort=-published_date&page=1`
+    const res = await fetch(url)
 
-    return {
-      props: {
-        posts
+    if (res.ok) {
+      // let pre = await res.json()
+      // let posts = pre.data
+      return {
+        props: {
+          preposts: await res.json()
+        }
       }
     }
+
+    // const posts = await getPosts(
+    //   `${variables.apiUrl}/items/posts?filter[status][_eq]=published&sort=-published_date&page=1`
+    // )
+
+    // return {
+    //   props: {
+    //     posts
+    //   }
+    // }
   }
 </script>
 
 <script>
   import { variables } from "$lib/variables"
 
-  export let posts
+  export let preposts
+  $: posts = preposts.data
   // `${variables.apiUrl}/items/posts?filter[status][_eq]=published&sort=-id&page=1`
 
   // https://stackoverflow.com/a/33292942/2936521
@@ -103,10 +117,10 @@
     return posts
   }
 
-  $: if (!posts)
-    posts = getPosts(
-      `${variables.apiUrl}/items/posts?filter[status][_eq]=published&sort=-published_date&page=1`
-    )
+  // $: if (!posts)
+  //   posts = getPosts(
+  //     `${variables.apiUrl}/items/posts?filter[status][_eq]=published&sort=-published_date&page=1`
+  //   )
 
   $: if (posts) {
     for (let i in posts) {

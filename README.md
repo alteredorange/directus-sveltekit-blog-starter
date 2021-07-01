@@ -1,7 +1,9 @@
-
 # Directus Sveltekit Blogging Starter
+<p align="center">
+<img  src="./directus-svelte.gif" alt="directus + svelte logos">
+</p>
 
-This is a Directus, Sveltekit blogging starter. Also comes with Tailwind (via Windicss) and static adapters ready to roll.
+This is a Directus, Sveltekit blogging starter. Also comes with Tailwind (via Windicss) for easy styling!
 
 ## Example
 
@@ -12,7 +14,7 @@ This is a Directus, Sveltekit blogging starter. Also comes with Tailwind (via Wi
 4. `pnpm run dev` - This will start Directus on the standard port (http://localhost:8055) and Sveltekit on http://localhost:3000
 5. Visit the Directus dashboard to add posts
 6. Edit any styles or pages directly through the Sveltekit files
-7. Create a fully static blog with `pnpm run build`
+
 
 ## Improvements and Suggestions
 Running into issues or have a suggestion to make things better? Feel free to open up an issue, pull request, or github discussion!
