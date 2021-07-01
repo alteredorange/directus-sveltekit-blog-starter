@@ -30,6 +30,7 @@
     "@pierred/commity": "^1.7.0",
     "concurrently": "^6.2.0",
     "cookie": "^0.4.1",
-    "directus": "^9.0.0-rc.82"
+    "directus": "^9.0.0-rc.82",
+    "pnpm": "^6.9.1"
   }
 }

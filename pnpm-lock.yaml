@@ -12,6 +12,7 @@ specifiers:
   cookie: ^0.4.1
   directus: ^9.0.0-rc.82
   flexsearch: ^0.7.2
+  pnpm: ^6.9.1
   svelte: ^3.34.0
   svelte-check: ^2.0.0
   svelte-preprocess: ^4.0.0
@@ -26,6 +27,7 @@ dependencies:
   concurrently: 6.2.0
   cookie: 0.4.1
   directus: 9.0.0-rc.82
+  pnpm: 6.9.1
 
 devDependencies:
   '@sveltejs/adapter-node': 1.0.0-next.24
@@ -4512,6 +4514,12 @@ packages:
       pino-std-serializers: 3.2.0
       quick-format-unescaped: 4.0.3
       sonic-boom: 1.4.1
+    dev: false
+
+  /pnpm/6.9.1:
+    resolution: {integrity: sha512-2qlbvmHB+ULAoTCMpJ75oADYoVQnsxD1ipCemdDJA2KW4auGwoTUzyowVYEiAe4DIDOqw3axhHVkNAo7P6goZA==}
+    engines: {node: '>=12.17'}
+    hasBin: true
     dev: false
 
   /posix-character-classes/0.1.1:
