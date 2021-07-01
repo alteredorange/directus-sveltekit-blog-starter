@@ -52,39 +52,23 @@
     //   })
     //   .then((posts) => posts.data)
 
-    const url = `${variables.apiUrl}/items/posts?filter[status][_eq]=published&sort=-published_date&page=1`
-    const res = await fetch(url)
+    const posts = await getPosts(
+      `${variables.apiUrl}/items/posts?filter[status][_eq]=published&sort=-published_date&page=1`
+    )
 
-    if (res.ok) {
-      // let pre = await res.json()
-      // let posts = pre.data
-      return {
-        props: {
-          preposts: await res.json()
-        }
+    return {
+      props: {
+        posts
       }
     }
-
-    // const posts = await getPosts(
-    //   `${variables.apiUrl}/items/posts?filter[status][_eq]=published&sort=-published_date&page=1`
-    // )
-
-    // return {
-    //   props: {
-    //     posts
-    //   }
-    // }
   }
 </script>
 
 <script>
   import { variables } from "$lib/variables"
 
-  export let preposts
-  $: posts = preposts.data
-  // `${variables.apiUrl}/items/posts?filter[status][_eq]=published&sort=-id&page=1`
+  export let posts
 
-  // https://stackoverflow.com/a/33292942/2936521
   function timeout(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms))
   }
