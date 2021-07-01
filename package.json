@@ -1,11 +1,10 @@
 {
-  "name": "directus-svelte-starter",
+  "name": "~TODO~",
   "version": "0.0.1",
   "scripts": {
-    "dev": "concurrently --names \"directus, svelte\" --prefix \"{name}:\" --prefix-colors \"blue,red\" --kill-others \"pnpm run directus start\"  \"svelte-kit dev\" ",
+    "dev": "svelte-kit dev",
     "build": "svelte-kit build",
     "preview": "svelte-kit preview",
-    "directus": "directus start",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
   },
@@ -18,15 +17,12 @@
     "svelte-check": "^2.0.0",
     "svelte-preprocess": "^4.0.0",
     "tslib": "^2.0.0",
-    "typescript": "^4.0.0",
-    "vite-plugin-windicss": "^1.1.1"
+    "typescript": "^4.0.0"
   },
   "type": "module",
   "dependencies": {
     "@fontsource/fira-mono": "^4.2.2",
     "@lukeed/uuid": "^2.0.0",
-    "concurrently": "^6.2.0",
-    "cookie": "^0.4.1",
-    "directus": "^9.0.0-rc.82"
+    "cookie": "^0.4.1"
   }
 }

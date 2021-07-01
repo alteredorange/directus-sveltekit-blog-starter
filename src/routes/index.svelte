@@ -1,181 +1,59 @@
 <script context="module" lang="ts">
-  export const prerender = true
-
-  // import { variables } from "$lib/variables"
-
-  // export async function load({ fetch }) {
-  //   // Use a `limit` querystring parameter to fetch a limited number of posts
-  //   // e.g. fetch('posts.json?limit=5') for 5 most recent posts
-  //   //     const posts = await fetch("/posts.json").then((res) => res.json())
-  //   const posts = await fetch(
-  //     `${variables.apiUrl}/items/posts?filter[status][_eq]=published`
-  //   )
-  //     .then((res) => res.json())
-  //     .then((posts) => posts.data)
-  //   return {
-  //     props: {
-  //       posts
-  //     }
-  //   }
-  // }
+	export const prerender = true;
 </script>
 
 <script lang="ts">
-  import { onMount } from "svelte"
-  // import Counter from "$lib/Counter/index.svelte"
-  // export let posts
-
-  const spaces =
-    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-
-  let canvas
-
-  onMount(() => {
-    console.log("mounted")
-    const ctx = canvas.getContext("2d")
-    let frame
-    ;(function loop() {
-      frame = requestAnimationFrame(loop)
-
-      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
-
-      for (let p = 0; p < imageData.data.length; p += 4) {
-        const i = p / 4
-        const x = i % canvas.width
-        const y = (i / canvas.height) >>> 0
-
-        const t = window.performance.now()
-
-        const r = 64 + (128 * x) / canvas.width + 64 * Math.sin(t / 1000)
-        const g = 64 + (128 * y) / canvas.height + 64 * Math.cos(t / 1400)
-        const b = 128
-
-        imageData.data[p + 0] = r
-        imageData.data[p + 1] = g
-        imageData.data[p + 2] = b
-        imageData.data[p + 3] = 255
-      }
-
-      ctx.putImageData(imageData, 0, 0)
-    })()
-    return () => {
-      cancelAnimationFrame(frame)
-    }
-  })
-
-  let runningWidth
-  $: runningHeight = runningWidth / 1.25
+	import Counter from '$lib/Counter/index.svelte';
 </script>
 
-<style>
-  /* .svg {
-    position: absolute;
-    width: 100px;
-    height: 100%;
-    left: 0%;
-    top: 0%;
-    display: block;
-    background: transparent;
-  } */
-
-  .logo {
-    /* position: absolute; */
-    /* top: 60px;
-    left: 36px; */
-    /* width: 320px; */
-    /* height: 256px; */
-    margin: 0 auto;
-    background-image: url("./directus-running-logo.svg");
-    /* background-color: red; */
-
-    background-position: 0% 0%;
-    /* background-size: 4800px 256px; */
-  }
-  .running {
-    animation: 1200ms run steps(14) infinite;
-  }
-
-  @keyframes run {
-    100% {
-      background-position: 100%;
-    }
-  }
-
-  .seperator {
-    animation: 32000ms spin steps(8) infinite;
-  }
-
-  @keyframes spin {
-    from {
-      /* transform: rotateX(0) rotateY(0); */
-      transform: rotate(0deg);
-      /* to keep things centered */
-      /* margin: 0 auto; */
-    }
-    to {
-      /* transform: rotateX(180) rotateY(365); */
-
-      transform: rotate(365deg);
-      /* to keep things centered */
-      /* margin: 0 auto; */
-    }
-  }
-
-  canvas {
-    width: 85%;
-    height: 85%;
-    background-color: rgb(255, 255, 255);
-    -webkit-mask: url(svelte-logo-mask.svg) 50% 50% no-repeat;
-    mask: url(svelte-logo-mask.svg) 50% 50% no-repeat;
-  }
-</style>
-
 <svelte:head>
-  <title>Directus SvelteKit Blog</title>
+	<title>Home</title>
 </svelte:head>
 
-<section class="mt-7">
-  <h1 class="font-bold text-center text-5xl text-gray-600">
-    Directus SvelteKit Blog Starter
-  </h1>
-  <section>
-    <div class="mx-auto bg-orange-300 h-11px mt-5 text-center w-5/12" />
-  </section>
-</section>
 <section>
-  <div
-    class="flex flex-wrap mx-auto mt-11 w-8/12 justify-between sm:flex-nowrap md:w-7/12">
-    <div
-      class="flex-wrap my-auto mx-auto w-8/12 sm:w-5/12"
-      bind:offsetWidth={runningWidth}>
-      <div
-        class="logo running"
-        style="background-size: {runningHeight *
-          18.75}px {runningHeight}px; width: {runningWidth}px; height: {runningHeight}px; " />
-    </div>
-    <div
-      class="my-auto mx-auto text-center py-4 text-8xl text-orange-300 w-11/12 sm:my-none sm:w-2/12">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="my-auto mx-auto max-h-100px w-10/12 seperator sm:max-h-none"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor">
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </div>
-    <div
-      class="flex-wrap my-auto mx-auto max-h-200px w-11/12 sm:max-h-none sm:w-5/12">
-      <canvas
-        bind:this={canvas}
-        width={32}
-        height={32}
-        class="mx-auto max-h-200px sm:max-h-none" />
-      <!-- <img src="/svelte-logo.svg" class="mx-auto h-200px" alt="" /> -->
-    </div>
-  </div>
+	<h1>
+		<div class="welcome">
+			<picture>
+				<source srcset="svelte-welcome.webp" type="image/webp" />
+				<img src="svelte-welcome.png" alt="Welcome" />
+			</picture>
+		</div>
+
+		to your new<br />SvelteKit app
+	</h1>
+
+	<h2>
+		try editing <strong>src/routes/index.svelte</strong>
+	</h2>
+
+	<Counter />
 </section>
+
+<style>
+	section {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex: 1;
+	}
+
+	h1 {
+		width: 100%;
+	}
+
+	.welcome {
+		position: relative;
+		width: 100%;
+		height: 0;
+		padding: 0 0 calc(100% * 495 / 2048) 0;
+	}
+
+	.welcome img {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		display: block;
+	}
+</style>
