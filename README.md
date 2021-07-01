@@ -1,38 +1,18 @@
-# create-svelte! Template Instead of Fork?
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+# Directus Sveltekit Blogging Starter
 
-## Creating a project
+This is a Directus, Sveltekit blogging starter. Also comes with Tailwind (via Windicss) and static adapters ready to roll.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Example
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+## Getting Started
+1. `git clone https://github.com/alteredorange/directus-sveltekit-blog-starter.git starter`
+2. `cd starter`
+3. `pnpm i    //or 'npm i' or 'yarn'`
+4. `pnpm run dev` - This will start Directus on the standard port (http://localhost:8055) and Sveltekit on http://localhost:3000
+5. Visit the Directus dashboard to add posts
+6. Edit any styles or pages directly through the Sveltekit files
+7. Create a fully static blog with `pnpm run build`
 
-# create a new project in my-app
-npm init svelte@next my-app
-```
-
-> Note: the `@next` is temporary
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
-
-```bash
-npm run build
-```
-
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+## Improvements and Suggestions
+Running into issues or have a suggestion to make things better? Feel free to open up an issue, pull request, or github discussion!
